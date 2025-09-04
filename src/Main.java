@@ -183,11 +183,27 @@ public class Main {
             return;
         }
         
-        System.out.println("Saldo disponible: $" + origen.getSaldo());
-        double monto = InputUtil.leerDecimal("Ingrese el monto a transferir: $");
+        if (cuentaOrigen.equals(cuentaDestino)) {
+            InputUtil.mostrarError("No se puede transferir a la misma cuenta.");
+            return;
+        }
+        
+        System.out.println("\n=== INFORMACIÓN DE CUENTAS ===");
+        System.out.println("Cuenta origen (" + cuentaOrigen + "): $" + origen.getSaldo());
+        System.out.println("Cuenta destino (" + cuentaDestino + "): $" + destino.getSaldo());
+        
+        double monto = InputUtil.leerDecimal("\nIngrese el monto a transferir: $");
         
         if (bancoService.transferir(cuentaOrigen, cuentaDestino, monto)) {
             InputUtil.mostrarExito("Transferencia realizada exitosamente.");
+            
+            // Actualizar las referencias de las cuentas para mostrar saldos actualizados
+            origen = bancoService.buscarCuenta(cuentaOrigen);
+            destino = bancoService.buscarCuenta(cuentaDestino);
+            
+            System.out.println("\n=== SALDOS ACTUALIZADOS ===");
+            System.out.println("Cuenta origen (" + cuentaOrigen + "): $" + origen.getSaldo());
+            System.out.println("Cuenta destino (" + cuentaDestino + "): $" + destino.getSaldo());
         } else {
             InputUtil.mostrarError("No se pudo realizar la transferencia. Verifique el saldo disponible.");
         }
