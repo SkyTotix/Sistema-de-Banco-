@@ -86,21 +86,21 @@ public class InputUtil {
      * Muestra un mensaje de error
      */
     public static void mostrarError(String mensaje) {
-        System.out.println("\n❌ ERROR: " + mensaje);
+        System.out.println("\nERROR: " + mensaje);
     }
     
     /**
      * Muestra un mensaje de éxito
      */
     public static void mostrarExito(String mensaje) {
-        System.out.println("\n✅ ÉXITO: " + mensaje);
+        System.out.println("\nEXITO: " + mensaje);
     }
     
     /**
      * Muestra un mensaje de información
      */
     public static void mostrarInfo(String mensaje) {
-        System.out.println("\nℹ️ INFO: " + mensaje);
+        System.out.println("\nINFO: " + mensaje);
     }
     
     /**
